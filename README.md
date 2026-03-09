@@ -27,20 +27,28 @@ This app helps users organize their daily tasks by allowing them to add, complet
 ---
 
 ## 📂 Project Structure
-src
-│
-├── assets
-│ └── delete.png
-│
-├── components
-│ ├── TaskInput.jsx
-│ ├── TaskList.jsx
-│ └── TaskItem.jsx
-│
-├── App.jsx
-├── main.jsx
-└── index.css
 
+```text
+task-manager
+│
+├── public
+│
+├── src
+│   ├── assets
+│   │   └── delete.png
+│   │
+│   ├── components
+│   │   ├── TaskInput.jsx
+│   │   ├── TaskList.jsx
+│   │   └── TaskItem.jsx
+│   │
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+│
+├── index.html
+├── package.json
+└── README.md
 ---
 
 ## ⚙️ Installation
