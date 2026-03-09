@@ -5,7 +5,7 @@ function TaskList({ tasks, toggleTask, deleteTask }) {
     return <p className="flex text-red-900 justify-center pb-2">No tasks yet.</p>;
 
   return (
-    <ul className="w-full max-w-md p-5 bg-purple-400 rounded-3xl">
+    <ul className="w-full max-w-md p-5 bg-slate-800 rounded-3xl ">
       {tasks.map((task) => (
         <TaskItem
           key={task.id}
