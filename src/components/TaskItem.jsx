@@ -1,13 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import deleteIcon from "../assets/delete.png";
 
-function TaskItem({ task, toggleTask, deleteTask, updateTask }) {
+function TaskItem({ task, toggleTask, deleteTask, updateTask, theme }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editedText, setEditedText] = useState(task.text);
-
-  useEffect(() => {
-    setEditedText(task.text);
-  }, [task.text]);
+  const [editedText, setEditedText] = useState(task.title);
 
   const handleSave = () => {
     const trimmed = editedText.trim();
@@ -22,7 +18,7 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask }) {
     }
     if (e.key === "Escape") {
       setIsEditing(false);
-      setEditedText(task.text);
+      setEditedText(task.title);
     }
   };
 
@@ -63,7 +59,7 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask }) {
                 : "text-slate-800"
             }`}
           >
-            {task.text}
+            {task.title}
           </p>
         )}
       </div>
@@ -79,7 +75,7 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask }) {
             <button
               onClick={() => {
                 setIsEditing(false);
-                setEditedText(task.text);
+                setEditedText(task.title);
               }}
               className="bg-slate-200 text-slate-700 px-3 py-1 rounded-lg text-xs font-semibold hover:bg-slate-300 transition"
             >
@@ -88,7 +84,10 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask }) {
           </>
         ) : (
           <button
-            onClick={() => setIsEditing(true)}
+            onClick={() => {
+              setEditedText(task.title);
+              setIsEditing(true);
+            }}
             disabled={task.completed}
             className={`bg-blue-500 text-white px-3 py-1 rounded-lg text-xs font-semibold transition ${
               task.completed ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
