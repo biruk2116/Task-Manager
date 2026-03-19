@@ -27,40 +27,40 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask }) {
   };
 
   return (
-    <li className="flex justify-between items-center bg-white p-3 mb-2 rounded shadow">
-      <div className="flex items-center gap-2 flex-1">
+    <li className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 p-3 rounded-2xl bg-slate-900/90 border border-slate-700 shadow-lg hover:shadow-xl transition-all duration-200 animate-slideIn">
+      <div className="flex items-center gap-3 w-full sm:w-auto">
         <input
           type="checkbox"
           checked={task.completed}
           onChange={() => toggleTask(task.id)}
-          className="w-4 h-4"
+          className="w-5 h-5 accent-cyan-500"
         />
-
+      </div>
+      <div className="flex-1 w-full">
         {isEditing ? (
           <input
             value={editedText}
             onChange={(e) => setEditedText(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 p-1 border rounded"
+            className="w-full p-2 rounded-lg bg-slate-100 text-slate-900 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
             autoFocus
           />
         ) : (
-          <span
-            className={`flex-1 ${
-              task.completed ? "line-through text-gray-400" : "cursor-pointer"
+          <p
+            className={`wrap-break-word text-left text-slate-100 ${
+              task.completed ? "line-through text-slate-400" : ""
             }`}
           >
             {task.text}
-          </span>
+          </p>
         )}
       </div>
-
-      <div className="flex items-center gap-2">
+      <div className="flex gap-2 items-center">
         {isEditing ? (
           <>
             <button
               onClick={handleSave}
-              className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600"
+              className="bg-emerald-500 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-emerald-600 transition"
             >
               Save
             </button>
@@ -69,7 +69,7 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask }) {
                 setIsEditing(false);
                 setEditedText(task.text);
               }}
-              className="bg-gray-200 text-gray-700 px-2 py-1 rounded hover:bg-gray-300"
+              className="bg-slate-200 text-slate-700 px-3 py-1 rounded-lg text-xs font-semibold hover:bg-slate-300 transition"
             >
               Cancel
             </button>
@@ -78,23 +78,24 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask }) {
           <button
             onClick={() => setIsEditing(true)}
             disabled={task.completed}
-            className={`bg-blue-500 text-white px-2 py-1 rounded ${
+            className={`bg-blue-500 text-white px-3 py-1 rounded-lg text-xs font-semibold transition ${
               task.completed ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
             }`}
           >
             Edit
           </button>
         )}
-
         <button
           onClick={() => deleteTask(task.id)}
           disabled={!task.completed}
-          className={`p-1 rounded-md ${
-            task.completed ? "hover:bg-red-200" : "opacity-50 cursor-not-allowed"
+          className={`p-1 rounded-lg transition ${
+            task.completed
+              ? "bg-red-500 text-white hover:bg-red-600"
+              : "bg-slate-700 text-slate-300 opacity-50 cursor-not-allowed"
           }`}
           aria-label="Delete task"
         >
-          <img src={deleteIcon} alt="Delete" className="w-5 h-5" />
+          <img src={deleteIcon} alt="Delete" className="w-4 h-4" />
         </button>
       </div>
     </li>

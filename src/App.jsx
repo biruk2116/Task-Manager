@@ -47,20 +47,15 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-600 flex flex-col items-center p-10">
-      <div
-        className="bg-slate-800 rounded-3xl border border-gray-700
-                shadow-[0_15px_40px_rgba(0,0,0,0.5)]
-                hover:shadow-[0_25px_60px_rgba(0,0,0,0.9,0.6)]
-                transition-all duration-300 p-6 max-w-md"
-      >
+    <div className="min-h-screen bg-linear-to-br from-slate-900 via-indigo-900 to-slate-700 flex flex-col items-center py-10 px-3">
+      <div className="w-full max-w-2xl bg-slate-900/80 border border-white/10 backdrop-blur-md rounded-3xl p-6 shadow-2xl animate-fadeIn">
         <Header />
         <TaskInput addTask={addTask} />
-        <div className="flex justify-between mb-3">
-          <p className="text-slate-200 text-sm">Tasks: {tasks.length}</p>
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-3 mb-3">
+          <p className="text-slate-200 text-sm">Tasks: <strong className="text-cyan-300">{tasks.length}</strong></p>
           <button
             onClick={clearCompleted}
-            className="text-xs bg-red-500 px-2 py-1 rounded text-white hover:bg-red-600"
+            className="transition duration-300 bg-red-500 text-white px-3 py-2 rounded-xl hover:bg-red-600 shadow-lg hover:shadow-red-500/30"
           >
             Clear completed
           </button>

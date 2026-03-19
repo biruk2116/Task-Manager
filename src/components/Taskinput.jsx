@@ -10,16 +10,22 @@ function TaskInput({ addTask }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex mb-6 w-full max-w-md pl-5">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col sm:flex-row gap-3 mb-6 w-full"
+    >
       <input
         type="text"
         value={task}
         onChange={(e) => setTask(e.target.value)}
         placeholder="Enter a new task..."
-        className="flex-grow p-2 bg-white border   rounded-md focus:outline-none"
+        className="flex-1 p-3 rounded-xl border border-slate-300 bg-slate-100/90 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition"
       />
-      <button className="bg-blue-500 text-white px-4 pr-5 rounded-md mr-5 hover:bg-blue-600">
-        Add
+      <button
+        type="submit"
+        className="bg-linear-to-r from-cyan-400 to-blue-500 text-white px-4 py-3 rounded-xl font-semibold transition hover:scale-[1.02] hover:shadow-lg"
+      >
+        Add task
       </button>
     </form>
   );
