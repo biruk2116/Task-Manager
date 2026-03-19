@@ -79,7 +79,7 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen flex flex-col items-center py-10 px-3 transition-all duration-300 animated-gradient ${
+      className={`min-h-screen flex flex-col items-center py-10 px-3 transition-all duration-300 animated-gradient relative overflow-hidden ${
         isDark ? "app-bg-dark" : "app-bg-light"
       }`}
     >
