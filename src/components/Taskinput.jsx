@@ -46,7 +46,7 @@ function TaskInput({ addTask, theme }) {
         <p
           className={`w-full sm:w-auto text-sm font-medium -mt-2 sm:-mt-1 ${
             isDark ? "text-red-300" : "text-red-600"
-          }`}
+          } animate-text-pop`}
           role="alert"
         >
           {error}

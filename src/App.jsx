@@ -79,10 +79,8 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen flex flex-col items-center py-10 px-3 transition-all duration-300 ${
-        isDark
-          ? "bg-linear-to-br from-slate-900 via-indigo-900 to-slate-700"
-          : "bg-linear-to-br from-slate-200 via-slate-300 to-slate-100"
+      className={`min-h-screen flex flex-col items-center py-10 px-3 transition-all duration-300 animated-gradient ${
+        isDark ? "app-bg-dark" : "app-bg-light"
       }`}
     >
       <div
@@ -93,7 +91,7 @@ function App() {
         }`}
       >
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-          <Header />
+          <Header theme={theme} />
           <button
             onClick={toggleTheme}
             className={`rounded-full px-3 py-2 text-xs font-semibold transition ${

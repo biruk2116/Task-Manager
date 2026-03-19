@@ -3,7 +3,13 @@ import TaskItem from "./Taskitem";
 function TaskList({ tasks, toggleTask, deleteTask, updateTask, theme }) {
   if (tasks.length === 0)
     return (
-      <div className="flex justify-center p-6 rounded-2xl bg-slate-800/50 text-slate-200">
+      <div
+        className={`flex justify-center p-6 rounded-2xl ${
+          theme === "dark"
+            ? "bg-slate-800/50 text-slate-200 border border-slate-700/50"
+            : "bg-white/70 text-slate-800 border border-slate-200"
+        }`}
+      >
         No tasks yet.
       </div>
     );

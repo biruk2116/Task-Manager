@@ -57,7 +57,7 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask, theme }) {
                 : task.completed
                 ? "line-through text-slate-500"
                 : "text-slate-800"
-            }`}
+            } animate-text-pop`}
           >
             {task.title}
           </p>
