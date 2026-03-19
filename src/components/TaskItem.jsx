@@ -86,7 +86,10 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask }) {
 
         <button
           onClick={() => deleteTask(task.id)}
-          className="p-1 rounded-md hover:bg-red-200"
+          disabled={!task.completed}
+          className={`p-1 rounded-md ${
+            task.completed ? "hover:bg-red-200" : "opacity-50 cursor-not-allowed"
+          }`}
           aria-label="Delete task"
         >
           <img src={deleteIcon} alt="Delete" className="w-5 h-5" />
