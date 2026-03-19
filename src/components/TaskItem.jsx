@@ -26,8 +26,10 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask }) {
     }
   };
 
+  const isDark = theme === "dark";
+
   return (
-    <li className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 p-3 rounded-2xl bg-slate-900/90 border border-slate-700 shadow-lg hover:shadow-xl transition-all duration-200 animate-slideIn">
+    <li className={`flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 p-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 animate-slideIn ${isDark ? 'bg-slate-900/90 border border-slate-700' : 'bg-white border border-slate-200'}`}>
       <div className="flex items-center gap-3 w-full sm:w-auto">
         <input
           type="checkbox"
@@ -42,13 +44,23 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask }) {
             value={editedText}
             onChange={(e) => setEditedText(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="w-full p-2 rounded-lg bg-slate-100 text-slate-900 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            className={`w-full p-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
+              isDark
+                ? "bg-slate-100 text-slate-900 border-slate-300"
+                : "bg-slate-50 text-slate-900 border-slate-300"
+            }`}
             autoFocus
           />
         ) : (
           <p
-            className={`wrap-break-word text-left text-slate-100 ${
-              task.completed ? "line-through text-slate-400" : ""
+            className={`wrap-break-word text-left ${
+              isDark
+                ? task.completed
+                  ? "line-through text-slate-400"
+                  : "text-slate-100"
+                : task.completed
+                ? "line-through text-slate-500"
+                : "text-slate-800"
             }`}
           >
             {task.text}
