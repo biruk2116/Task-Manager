@@ -46,9 +46,8 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask }) {
           />
         ) : (
           <span
-            onClick={() => toggleTask(task.id)}
-            className={`flex-1 cursor-pointer ${
-              task.completed ? "line-through text-gray-400" : ""
+            className={`flex-1 ${
+              task.completed ? "line-through text-gray-400" : "cursor-pointer"
             }`}
           >
             {task.text}
@@ -78,7 +77,10 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask }) {
         ) : (
           <button
             onClick={() => setIsEditing(true)}
-            className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+            disabled={task.completed}
+            className={`bg-blue-500 text-white px-2 py-1 rounded ${
+              task.completed ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
+            }`}
           >
             Edit
           </button>
