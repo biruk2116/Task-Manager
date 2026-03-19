@@ -4,17 +4,25 @@ import TaskInput from "./components/Taskinput";
 import TaskList from "./components/TaskList";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    try {
+      const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      // Backwards-compatible migration: older saved tasks used `text`.
+      return storedTasks
+        .map((t) => ({
+          id: t.id ?? Date.now(),
+          title: (t.title ?? t.text ?? "").toString(),
+          completed: !!t.completed,
+        }))
+        .filter((t) => t.title);
+    } catch {
+      return [];
+    }
+  });
   const [filter, setFilter] = useState("all");
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") || "dark"
   );
-
-  // Load tasks from localStorage
-  useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    setTasks(storedTasks);
-  }, []);
 
   // Save tasks whenever tasks change
   useEffect(() => {
@@ -27,8 +35,10 @@ function App() {
   }, [theme]);
 
   const addTask = (task) => {
-    if (!task) return;
-    setTasks([...tasks, { id: Date.now(), text: task, completed: false }]);
+    const title = task?.toString().trim?.() ?? "";
+    if (!title) return false;
+    setTasks((prev) => [...prev, { id: Date.now(), title, completed: false }]);
+    return true;
   };
 
   const toggleTask = (id) => {
@@ -52,7 +62,7 @@ function App() {
   const updateTask = (id, newText) => {
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, text: newText } : task
+        task.id === id ? { ...task, title: newText } : task
       )
     );
   };
