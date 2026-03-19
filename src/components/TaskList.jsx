@@ -1,6 +1,6 @@
 import TaskItem from "./Taskitem";
 
-function TaskList({ tasks, toggleTask, deleteTask }) {
+function TaskList({ tasks, toggleTask, deleteTask, updateTask }) {
   if (tasks.length === 0)
     return <p className="flex text-red-900 justify-center pb-2">No tasks yet.</p>;
 
@@ -12,6 +12,7 @@ function TaskList({ tasks, toggleTask, deleteTask }) {
           task={task}
           toggleTask={toggleTask}
           deleteTask={deleteTask}
+          updateTask={updateTask}
         />
       ))}
     </ul>

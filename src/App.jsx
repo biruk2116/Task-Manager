@@ -30,20 +30,48 @@ function App() {
   );
 };
 
+  const updateTask = (id, newText) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, text: newText } : task
+      )
+    );
+  };
+
   const deleteTask = (id) => {
     setTasks(tasks.filter((t) => t.id !== id));
   };
 
+  const clearCompleted = () => {
+    setTasks(tasks.filter((task) => !task.completed));
+  };
+
   return (
     <div className="min-h-screen bg-slate-600 flex flex-col items-center p-10">
-<div   className="bg-slate-800 rounded-3xl border border-gray-700
+      <div
+        className="bg-slate-800 rounded-3xl border border-gray-700
                 shadow-[0_15px_40px_rgba(0,0,0,0.5)]
-                hover:shadow-[0_25px_60px_rgba(0,0,0.9,0.6)]
-                transition-all duration-300 p-6 max-w-md">
+                hover:shadow-[0_25px_60px_rgba(0,0,0,0.9,0.6)]
+                transition-all duration-300 p-6 max-w-md"
+      >
         <Header />
-      <TaskInput addTask={addTask} />
-      <TaskList tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask} />
-</div>
+        <TaskInput addTask={addTask} />
+        <div className="flex justify-between mb-3">
+          <p className="text-slate-200 text-sm">Tasks: {tasks.length}</p>
+          <button
+            onClick={clearCompleted}
+            className="text-xs bg-red-500 px-2 py-1 rounded text-white hover:bg-red-600"
+          >
+            Clear completed
+          </button>
+        </div>
+        <TaskList
+          tasks={tasks}
+          toggleTask={toggleTask}
+          deleteTask={deleteTask}
+          updateTask={updateTask}
+        />
+      </div>
     </div>
   );
 }
