@@ -99,10 +99,12 @@ function TaskItem({ task, toggleTask, deleteTask, updateTask, theme }) {
         <button
           onClick={() => deleteTask(task.id)}
           disabled={!task.completed}
-          className={`p-1 rounded-lg transition ${
+          className={`p-1 rounded-lg transition-opacity ${
             task.completed
-              ? "bg-red-500 text-white hover:bg-red-600"
-              : "bg-slate-700 text-slate-300 opacity-50 cursor-not-allowed"
+              ? isDark
+                ? "text-red-300 hover:bg-red-500/10 hover:text-red-200"
+                : "text-red-600 hover:bg-red-100 hover:text-red-700"
+              : "text-slate-400 opacity-0 cursor-not-allowed hover:bg-transparent pointer-events-none"
           }`}
           aria-label="Delete task"
         >

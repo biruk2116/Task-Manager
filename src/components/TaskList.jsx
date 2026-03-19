@@ -1,6 +1,6 @@
 import TaskItem from "./Taskitem";
 
-function TaskList({ tasks, toggleTask, deleteTask, updateTask }) {
+function TaskList({ tasks, toggleTask, deleteTask, updateTask, theme }) {
   if (tasks.length === 0)
     return (
       <div className="flex justify-center p-6 rounded-2xl bg-slate-800/50 text-slate-200">
@@ -16,6 +16,7 @@ function TaskList({ tasks, toggleTask, deleteTask, updateTask }) {
           toggleTask={toggleTask}
           deleteTask={deleteTask}
           updateTask={updateTask}
+          theme={theme}
         />
       ))}
     </ul>
